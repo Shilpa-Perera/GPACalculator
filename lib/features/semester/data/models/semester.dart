@@ -1,6 +1,9 @@
+import 'package:floor/floor.dart';
 import 'package:gpa_calculator/features/semester/domain/entities/semester.dart';
 
+@entity
 class Semester extends SemesterEntity {
+  @primaryKey
   String semesterId;
   double semesterGpa;
 

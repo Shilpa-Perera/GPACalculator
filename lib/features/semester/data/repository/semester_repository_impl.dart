@@ -1,42 +1,66 @@
-import 'package:gpa_calculator/features/semester/data/models/semester.dart';
+import 'package:gpa_calculator/config/database_helper.dart';
 import 'package:gpa_calculator/features/semester/domain/entities/semester.dart';
 import 'package:gpa_calculator/features/semester/domain/repository/semester_repository.dart';
+import 'package:sqflite/sqflite.dart';
 
 class SemesterRepositoryImpl implements SemesterRepository {
-  // final
-  // final SemesterLocalDataSource semesterLocalDataSource;
-
-  // SemesterRepositoryImpl({
-  //   required this.semesterRemoteDataSource,
-  //   required this.semesterLocalDataSource,
-  // });
+  final DatabaseHandler _databaseHandler = DatabaseHandler();
 
   @override
-  Future<List<Semester>> getSemesters() async {
-    throw UnimplementedError();
+  Future<List<SemesterEntity>> getSemesters() async {
+    final Database db = await _databaseHandler.database;
+    final List<Map<String, dynamic>> maps = await db.query('semesters');
+    return List.generate(maps.length, (i) {
+      return SemesterEntity(
+        semesterId: maps[i]['semesterId'],
+        semesterGpa: maps[i]['semesterGpa'],
+      );
+    });
   }
 
   @override
-  Future<SemesterEntity> createSemester(SemesterEntity semester) {
-    // TODO: implement createSemester
-    throw UnimplementedError();
+  Future<SemesterEntity> getSemester(int id) async {
+    final Database db = await _databaseHandler.database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      'semesters',
+      where: 'semesterId = ?',
+      whereArgs: [id],
+    );
+    return SemesterEntity(
+      semesterId: maps[0]['semesterId'],
+      semesterGpa: maps[0]['semesterGpa'],
+    );
   }
 
   @override
-  Future<SemesterEntity> deleteSemester(int id) {
-    // TODO: implement deleteSemester
-    throw UnimplementedError();
+  Future<SemesterEntity> createSemester(SemesterEntity semester) async {
+    final Database db = await _databaseHandler.database;
+    await db.insert('semesters', semester.toJson());
+    return semester;
   }
 
   @override
-  Future<SemesterEntity> getSemester(int id) {
-    // TODO: implement getSemester
-    throw UnimplementedError();
+  Future<SemesterEntity> updateSemester(SemesterEntity semester) async {
+    // final Database db = await _databaseHandler.database;
+    // await db.update(
+    //   'semesters',
+    //   semester.toMap(),
+    //   where: 'id = ?',
+    //   whereArgs: [semester.id],
+    // );
+    // return semester;
+    throw UnimplementedError;
   }
 
   @override
-  Future<SemesterEntity> updateSemester(SemesterEntity semester) {
-    // TODO: implement updateSemester
-    throw UnimplementedError();
+  Future<SemesterEntity> deleteSemester(int id) async {
+    // final Database db = await _databaseHandler.database;
+    // await db.delete(
+    //   'semesters',
+    //   where: 'id = ?',
+    //   whereArgs: [id],
+    // );
+    // return SemesterEntity(id: id);
+    throw UnimplementedError;
   }
 }
