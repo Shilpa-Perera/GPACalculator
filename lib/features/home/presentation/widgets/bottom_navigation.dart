@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gpa_calculator/features/home/presentation/widgets/home_page.dart';
 import 'package:gpa_calculator/features/home/presentation/widgets/predictor_page.dart';
 import 'package:gpa_calculator/features/home/presentation/widgets/view_page.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// Flutter code sample for [NavigationBar].
 
@@ -13,7 +14,8 @@ class NavigationBarApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(useMaterial3: true),
+      theme: ThemeData(
+          useMaterial3: true, textTheme: GoogleFonts.dmSerifDisplayTextTheme()),
       home: const NavigationExample(),
     );
   }

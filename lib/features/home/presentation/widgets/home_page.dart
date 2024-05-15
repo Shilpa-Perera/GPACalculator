@@ -29,34 +29,38 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-        child: Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            flex: 3,
-            child: CustomPaint(
-              foregroundPainter: CircleProgress(70),
-              child: Container(
-                width: 300,
-                height: 300,
-                child: const Center(
-                    child: Text('GPA', style: TextStyle(fontSize: 50))),
+      child: Scaffold(
+        body: Center(
+          // Wrapping the Column with Center widget
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                flex: 3,
+                child: CustomPaint(
+                  foregroundPainter: CircleProgress(70),
+                  child: Container(
+                    width: 300,
+                    height: 300,
+                    child: const Center(
+                        child: Text('GPA', style: TextStyle(fontSize: 50))),
+                  ),
+                ),
               ),
-            ),
+              const Expanded(
+                flex: 2,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('Total GPA Credits: 150'),
+                    Text('Total Non-GPA Credits: 80'),
+                  ],
+                ),
+              ),
+            ],
           ),
-          const Expanded(
-            flex: 2,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text('Total GPA Credits: 150'),
-                Text('Total Non-GPA Credits: 80'),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
-    ));
+    );
   }
 }
