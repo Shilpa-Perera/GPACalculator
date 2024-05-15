@@ -77,7 +77,7 @@ class _NavigationExampleState extends State<NavigationExample> {
         ),
 
         /// Notifications page
-        const ViewPage(key: Key('view_page')),
+        ViewPage(key: const Key('view_page')),
       ][currentPageIndex],
     );
   }
