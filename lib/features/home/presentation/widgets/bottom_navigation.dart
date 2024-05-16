@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gpa_calculator/features/home/presentation/widgets/home_page.dart';
+import 'package:gpa_calculator/features/home/presentation/pages/home_page.dart';
 import 'package:gpa_calculator/features/home/presentation/widgets/predictor_page.dart';
-import 'package:gpa_calculator/features/home/presentation/widgets/view_page.dart';
+import 'package:gpa_calculator/features/semester/presentation/pages/view_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 /// Flutter code sample for [NavigationBar].
@@ -35,12 +35,17 @@ class _NavigationExampleState extends State<NavigationExample> {
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 237, 235, 237),
+      // backgroundColor: Color.fromARGB(255, 237, 235, 237),
       appBar: AppBar(
-        title: const Text('GPA Calculator'),
-        backgroundColor: theme.colorScheme.primary,
-        shadowColor: theme.colorScheme.secondary,
-      ),
+          title: const Center(child: Text('GPA Calculator')),
+          backgroundColor: Color.fromARGB(255, 3, 6, 95),
+          titleTextStyle: GoogleFonts.dmSerifDisplay(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+            color: Colors.white,
+          )
+          // shadowColor: theme.colorScheme.secondary,
+          ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
           setState(() {
