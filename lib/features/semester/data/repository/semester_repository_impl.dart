@@ -11,10 +11,7 @@ class SemesterRepositoryImpl implements SemesterRepository {
     final Database db = await _databaseHandler.database;
     final List<Map<String, dynamic>> maps = await db.query('semesters');
     return List.generate(maps.length, (i) {
-      return SemesterEntity(
-        semesterId: maps[i]['semesterId'],
-        semesterGpa: maps[i]['semesterGpa'],
-      );
+      return SemesterEntity.fromJson(maps[i]);
     });
   }
 
@@ -26,6 +23,7 @@ class SemesterRepositoryImpl implements SemesterRepository {
       where: 'semesterId = ?',
       whereArgs: [id],
     );
+    // print(maps);
     return SemesterEntity(
       semesterId: maps[0]['semesterId'],
       semesterGpa: maps[0]['semesterGpa'],
@@ -53,14 +51,20 @@ class SemesterRepositoryImpl implements SemesterRepository {
   }
 
   @override
-  Future<SemesterEntity> deleteSemester(int id) async {
-    // final Database db = await _databaseHandler.database;
-    // await db.delete(
-    //   'semesters',
-    //   where: 'id = ?',
-    //   whereArgs: [id],
-    // );
-    // return SemesterEntity(id: id);
-    throw UnimplementedError;
+  Future<int> deleteSemester(int id) async {
+    final Database db = await _databaseHandler.database;
+    await db.delete(
+      'semesters',
+      where: 'semesterId = ?',
+      whereArgs: [id],
+    );
+    return id;
   }
+
+  // @override
+  // Future<Int> getNextSemesterId() async {
+  //   final Database db = await _databaseHandler.database;
+  //   // return 1;
+  //   throw UnimplementedError;
+  // }
 }

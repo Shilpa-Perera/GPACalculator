@@ -14,9 +14,8 @@ class _AddModulePageState extends State<AddModulePage> {
   late TextEditingController _nameController;
   late bool _isGpa;
   late int _credit;
-  late String _selectedGrade = 'A+'; // Default grade selection
+  late String _selectedGrade = 'A+';
 
-  // List of grades
   final List<String> _grades = [
     'A+',
     'A',

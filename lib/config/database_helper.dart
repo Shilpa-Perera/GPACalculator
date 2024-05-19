@@ -15,10 +15,10 @@ class DatabaseHandler {
       join(await getDatabasesPath(), 'gpa.db'),
       onCreate: (db, version) async {
         await db.execute(
-          "CREATE TABLE semester(semesterId INTEGER PRIMARY KEY , semesterGpa REAL)",
+          "CREATE TABLE semesters(semesterId INTEGER PRIMARY KEY , semesterGpa REAL)",
         );
         await db.execute(
-          "CREATE TABLE module(moduleId INTEGER PRIMARY KEY , semesterId INTEGER, moduleName TEXT, isGpa INTEGER, credit INTEGER, grade TEXT, FOREIGN KEY(semesterId) REFERENCES semester(semesterId))",
+          "CREATE TABLE modules(moduleId INTEGER PRIMARY KEY , semesterId INTEGER, moduleName TEXT, isGpa INTEGER, credit INTEGER, grade TEXT, FOREIGN KEY(semesterId) REFERENCES semester(semesterId))",
         );
       },
       version: 1,

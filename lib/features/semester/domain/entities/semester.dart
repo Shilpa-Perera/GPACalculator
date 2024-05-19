@@ -1,5 +1,5 @@
 class SemesterEntity {
-  String semesterId;
+  int semesterId;
   double semesterGpa;
 
   SemesterEntity({required this.semesterId, required this.semesterGpa});

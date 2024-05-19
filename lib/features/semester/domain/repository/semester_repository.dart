@@ -5,5 +5,6 @@ abstract class SemesterRepository {
   Future<SemesterEntity> getSemester(int id);
   Future<SemesterEntity> createSemester(SemesterEntity semester);
   Future<SemesterEntity> updateSemester(SemesterEntity semester);
-  Future<SemesterEntity> deleteSemester(int id);
+  Future<int> deleteSemester(int id);
+  // Future<Int> getNextSemesterId();
 }

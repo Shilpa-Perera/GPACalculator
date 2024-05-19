@@ -3,16 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:gpa_calculator/features/module/presentation/pages/add_module_page.dart';
 
 class SemesterModulesPage extends StatelessWidget {
-  final List<Map<String, dynamic>> modules = [
-    {"name": "Module 1", "grade": "A", "credit": 3, "isGPA": true},
-    {"name": "Module 2", "grade": "B+", "credit": 2, "isGPA": false},
-    {"name": "Module 3", "grade": "A-", "credit": 4, "isGPA": true},
-    {"name": "Module 4", "grade": "B", "credit": 3, "isGPA": false},
-    {"name": "Module 1", "grade": "A", "credit": 3, "isGPA": true},
-    {"name": "Module 2", "grade": "B+", "credit": 2, "isGPA": false},
-    {"name": "Module 3", "grade": "A-", "credit": 4, "isGPA": true},
-    {"name": "Module 4", "grade": "B", "credit": 3, "isGPA": false},
-  ];
+  final List<Map<String, dynamic>> modules = [];
 
   SemesterModulesPage({super.key});
 
