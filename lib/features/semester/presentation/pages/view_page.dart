@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gpa_calculator/features/semester/domain/entities/semester.dart';
 import 'package:gpa_calculator/features/semester/domain/usecases/semester_handlers.dart';
-import 'package:gpa_calculator/features/semester/presentation/pages/semester_modules.dart';
+import 'package:gpa_calculator/features/module/presentation/pages/semester_modules.dart';
 
 class ViewPage extends StatefulWidget {
   ViewPage({super.key});
@@ -61,7 +61,8 @@ class _ViewPageState extends State<ViewPage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => SemesterModulesPage(),
+              builder: (context) =>
+                  SemesterModulesPage({"semesterId": item.semesterId}),
             ),
           );
         },
@@ -118,55 +119,55 @@ class _ViewPageState extends State<ViewPage> {
                     size: 40,
                     color: Colors.indigo[900],
                   )
-                : Expanded(
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: semesterList
-                            .map((id) => Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: InkWell(
-                                    onTap: () async {
-                                      semesterHandlers.handleAddSemester(id);
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              SemesterModulesPage(),
+                : SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: semesterList
+                          .map((id) => Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: InkWell(
+                                  onTap: () async {
+                                    semesterHandlers.handleAddSemester(id);
+                                    setState(() {
+                                      semesterList = [];
+                                      _loadSemesters();
+                                    });
+
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            SemesterModulesPage(
+                                                {"semesterId": id}),
+                                      ),
+                                    );
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(12.0),
+                                    ),
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        const Icon(
+                                          Icons.add,
+                                          size: 16,
+                                          color: Colors.black,
                                         ),
-                                      );
-                                      setState(() {
-                                        semesterList = [];
-                                      });
-                                    },
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius:
-                                            BorderRadius.circular(12.0),
-                                      ),
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          const Icon(
-                                            Icons.add,
-                                            size: 16,
-                                            color: Colors.black,
-                                          ),
-                                          const SizedBox(width: 4),
-                                          Text(
-                                            'Semester $id',
-                                            style: TextStyle(fontSize: 16),
-                                          ),
-                                        ],
-                                      ),
+                                        const SizedBox(width: 4),
+                                        Text(
+                                          'Semester $id',
+                                          style: TextStyle(fontSize: 16),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ))
-                            .toList(),
-                      ),
+                                ),
+                              ))
+                          .toList(),
                     ),
                   ),
           ),
@@ -176,12 +177,11 @@ class _ViewPageState extends State<ViewPage> {
   }
 
   void _deleteSemester(BuildContext context, SemesterEntity semester) {
-    // Placeholder for delete action
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Delete Semester  ${semester.semesterId}?'),
+          title: Text('Delete Semester ${semester.semesterId}?'),
           content: Text('Are you sure you want to delete this semester?'),
           actions: <Widget>[
             TextButton(

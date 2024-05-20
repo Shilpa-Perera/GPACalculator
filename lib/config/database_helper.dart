@@ -18,7 +18,10 @@ class DatabaseHandler {
           "CREATE TABLE semesters(semesterId INTEGER PRIMARY KEY , semesterGpa REAL)",
         );
         await db.execute(
-          "CREATE TABLE modules(moduleId INTEGER PRIMARY KEY , semesterId INTEGER, moduleName TEXT, isGpa INTEGER, credit INTEGER, grade TEXT, FOREIGN KEY(semesterId) REFERENCES semester(semesterId))",
+          "CREATE TABLE modules(moduleId INTEGER PRIMARY KEY AUTOINCREMENT , semesterId INTEGER, moduleName TEXT, isGpa INTEGER, credit INTEGER, grade TEXT, FOREIGN KEY(semesterId) REFERENCES semester(semesterId))",
+        );
+        await db.execute(
+          "CREATE TABLE gradings(gradingId INTEGER PRIMARY KEY AUTOINCREMENT , letterGrade TEXT, numericalValue REAL)",
         );
       },
       version: 1,

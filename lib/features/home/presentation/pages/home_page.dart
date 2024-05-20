@@ -10,20 +10,30 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-  late Animation<double> _animation;
-
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
-      duration: const Duration(seconds: 500),
-      vsync: this,
+  }
+
+  void _openSettings() {
+    // Add your settings navigation or action here
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Settings'),
+          content: Text('Settings dialog content goes here.'),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Close'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
-    _animation = Tween<double>(begin: 0, end: 100).animate(_controller)
-      ..addListener(() {
-        setState(() {});
-      });
   }
 
   @override
@@ -31,7 +41,6 @@ class _HomePageState extends State<HomePage>
     return SafeArea(
       child: Scaffold(
         body: Center(
-          // Wrapping the Column with Center widget
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -43,7 +52,8 @@ class _HomePageState extends State<HomePage>
                     width: 300,
                     height: 300,
                     child: const Center(
-                        child: Text('GPA', style: TextStyle(fontSize: 50))),
+                      child: Text('GPA', style: TextStyle(fontSize: 50)),
+                    ),
                   ),
                 ),
               ),

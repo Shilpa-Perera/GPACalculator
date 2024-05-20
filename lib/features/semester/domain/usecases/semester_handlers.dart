@@ -1,10 +1,12 @@
 import 'dart:async';
 
+import 'package:gpa_calculator/features/module/domain/usecases/module_handlers.dart';
 import 'package:gpa_calculator/features/semester/data/repository/semester_repository_impl.dart';
 import 'package:gpa_calculator/features/semester/domain/entities/semester.dart';
 
 class SemesterHandlers {
   static final semesterRepositoryImpl = SemesterRepositoryImpl();
+  static final moduleHandler = ModuleHandlers();
 
   void handleAddSemester(int semesterId) async {
     await semesterRepositoryImpl.createSemester(
@@ -48,6 +50,7 @@ class SemesterHandlers {
   }
 
   Future<int> handleDeleteSemester(SemesterEntity semesterEntity) async {
+    await moduleHandler.handleDeleteModulesBySemId(semesterEntity.semesterId);
     return await semesterRepositoryImpl
         .deleteSemester(semesterEntity.semesterId);
   }

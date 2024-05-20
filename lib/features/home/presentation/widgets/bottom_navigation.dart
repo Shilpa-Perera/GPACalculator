@@ -3,6 +3,8 @@ import 'package:gpa_calculator/features/home/presentation/pages/home_page.dart';
 import 'package:gpa_calculator/features/home/presentation/widgets/predictor_page.dart';
 import 'package:gpa_calculator/features/semester/presentation/pages/view_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:gpa_calculator/features/settings/presentation/pages/main_settings_page.dart';
+import 'package:gpa_calculator/features/settings/presentation/pages/settings_page.dart';
 
 /// Flutter code sample for [NavigationBar].
 
@@ -70,6 +72,11 @@ class _NavigationExampleState extends State<NavigationExample> {
             icon: Icon(Icons.grid_view_outlined),
             label: 'View',
           ),
+          NavigationDestination(
+            selectedIcon: Icon(Icons.settings),
+            icon: Icon(Icons.settings_outlined),
+            label: 'Settings',
+          ),
         ],
       ),
       body: <Widget>[
@@ -83,6 +90,9 @@ class _NavigationExampleState extends State<NavigationExample> {
 
         /// Notifications page
         ViewPage(key: const Key('view_page')),
+
+        // Settings page
+        const MainSettingsPage(key: Key('main settings_page')),
       ][currentPageIndex],
     );
   }
