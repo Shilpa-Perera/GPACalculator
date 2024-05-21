@@ -5,10 +5,16 @@ import 'package:sqflite/sqflite.dart';
 
 class GradingCriteriaRepositoryImpl implements GradingCriteriaRepository {
   final DatabaseHandler _databaseHandler = DatabaseHandler();
+
   @override
-  Future<GradingCriteria> createGradings(List<GradingCriteria> gradingList) {
-    // TODO: implement createGradings
-    throw UnimplementedError();
+  Future<void> createGradings(List<GradingCriteria> gradingList) async {
+    final Database db = await _databaseHandler.database;
+    Batch batch = db.batch();
+    for (var grading in gradingList) {
+      print(grading);
+      batch.insert("gradings", grading.toJson());
+    }
+    await batch.commit(noResult: true);
   }
 
   @override
@@ -22,7 +28,6 @@ class GradingCriteriaRepositoryImpl implements GradingCriteriaRepository {
 
   @override
   Future<GradingCriteria> getGradingValue(String letterGrade) {
-    // TODO: implement getGradingValue
     throw UnimplementedError();
   }
 }

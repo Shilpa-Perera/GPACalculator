@@ -4,9 +4,6 @@ import 'package:gpa_calculator/features/home/presentation/widgets/predictor_page
 import 'package:gpa_calculator/features/semester/presentation/pages/view_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gpa_calculator/features/settings/presentation/pages/main_settings_page.dart';
-import 'package:gpa_calculator/features/settings/presentation/pages/settings_page.dart';
-
-/// Flutter code sample for [NavigationBar].
 
 void main() => runApp(const NavigationBarApp());
 
@@ -35,7 +32,6 @@ class _NavigationExampleState extends State<NavigationExample> {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
     return Scaffold(
       // backgroundColor: Color.fromARGB(255, 237, 235, 237),
       appBar: AppBar(

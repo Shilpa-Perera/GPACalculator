@@ -21,7 +21,7 @@ class DatabaseHandler {
           "CREATE TABLE modules(moduleId INTEGER PRIMARY KEY AUTOINCREMENT , semesterId INTEGER, moduleName TEXT, isGpa INTEGER, credit INTEGER, grade TEXT, FOREIGN KEY(semesterId) REFERENCES semester(semesterId))",
         );
         await db.execute(
-          "CREATE TABLE gradings(gradingId INTEGER PRIMARY KEY AUTOINCREMENT , letterGrade TEXT, numericalValue REAL)",
+          "CREATE TABLE gradings(gradingId INTEGER PRIMARY KEY AUTOINCREMENT , maxGPA REAL, letterGrade TEXT, numericalValue REAL)",
         );
       },
       version: 1,

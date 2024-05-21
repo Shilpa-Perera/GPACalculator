@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:gpa_calculator/features/settings/domain/entities/grading_criteria.dart';
+import 'package:gpa_calculator/features/settings/domain/usecases/grading_criteria_handler.dart';
 import 'package:gpa_calculator/features/settings/presentation/widgets/letter_grade.dart';
 
 class SettingsPage extends StatefulWidget {
@@ -12,6 +15,8 @@ class _SettingsPageState extends State<SettingsPage> {
   final TextEditingController _gpaController = TextEditingController();
   final List<LetterGrade> _letterGrades = [];
   bool _settingsAdded = false;
+  final GradingCriteriaHandler gradingCriteriaHandler =
+      GradingCriteriaHandler();
 
   void _addInitialGrade() {
     setState(() {
@@ -22,16 +27,13 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   void _addNewGrade(int index) {
-    // Check if current fields are empty
     if (_letterGrades[index].isValid()) {
-      // Defer the state change to the end of the frame
       WidgetsBinding.instance.addPostFrameCallback((_) {
         setState(() {
           _letterGrades.insert(index + 1, LetterGrade());
         });
       });
     } else {
-      // Show error if fields are empty
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
             content: Text(
@@ -48,22 +50,19 @@ class _SettingsPageState extends State<SettingsPage> {
 
   void _sendDataToDatabase() {
     final double maxGPA = double.tryParse(_gpaController.text) ?? 0.0;
-    final List<Map<String, dynamic>> grades = _letterGrades.map((letterGrade) {
-      return {
-        'letter': letterGrade.letterController.text,
-        'value': double.tryParse(letterGrade.valueController.text) ?? 0.0,
-      };
+    final List<GradingCriteria> grades = _letterGrades.map((letterGrade) {
+      return GradingCriteria(
+        letterGrade: letterGrade.letterController.text,
+        numericValue: double.tryParse(letterGrade.valueController.text) ?? 0.0,
+        maxGPA: maxGPA,
+      );
     }).toList();
 
     _sendToDatabase(maxGPA, grades);
   }
 
-  void _sendToDatabase(double maxGPA, List<Map<String, dynamic>> grades) {
-    // Implement your database sending logic here
-    print('Sending to database:');
-    print('Max GPA: $maxGPA');
-    print('Grades: $grades');
-    // Example: You can use Firebase, SQLite, REST API, etc.
+  void _sendToDatabase(double maxGPA, List<GradingCriteria> grades) async {
+    await gradingCriteriaHandler.handleCreateGradings(grades);
     setState(() {
       _settingsAdded = true;
     });
@@ -78,6 +77,17 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Add Module',
+          style: GoogleFonts.dmSerifDisplay(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: const Color.fromARGB(255, 3, 6, 95),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -95,12 +105,12 @@ class _SettingsPageState extends State<SettingsPage> {
                   ),
                 ),
                 IconButton(
-                  icon: Icon(Icons.send),
+                  icon: const Icon(Icons.send),
                   onPressed: _addInitialGrade,
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Expanded(
               child: ListView.builder(
                 itemCount: _letterGrades.length,
@@ -121,29 +131,29 @@ class _SettingsPageState extends State<SettingsPage> {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Text("Confirm"),
-                        content: Text(
-                            "Are you sure you want to add these settings?"),
+                        title: const Text("Confirm"),
+                        content: const Text(
+                            "Are you sure you want to add these settings? Once added you can't edit them."),
                         actions: <Widget>[
                           TextButton(
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
-                            child: Text("Cancel"),
+                            child: const Text("Cancel"),
                           ),
                           TextButton(
                             onPressed: () {
                               _sendDataToDatabase();
                               Navigator.of(context).pop();
                             },
-                            child: Text("Confirm"),
+                            child: const Text("Confirm"),
                           ),
                         ],
                       );
                     },
                   );
                 },
-                child: Text('Add Settings'),
+                child: const Text('Add Settings'),
               ),
             if (_settingsAdded)
               const Padding(

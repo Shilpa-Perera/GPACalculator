@@ -12,14 +12,14 @@ class GradingCriteria {
     return GradingCriteria(
         maxGPA: json['maxGPA'],
         letterGrade: json['letterGrade'],
-        numericValue: json['numericValue']);
+        numericValue: json['numericalValue']);
   }
 
   Map<String, dynamic> toJson() {
     return {
       'maxGPA': maxGPA,
       'letterGrade': letterGrade,
-      'numericValue': numericValue
+      'numericalValue': numericValue
     };
   }
 }

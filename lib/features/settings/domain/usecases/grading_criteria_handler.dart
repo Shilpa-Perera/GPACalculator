@@ -7,4 +7,8 @@ class GradingCriteriaHandler {
   Future<List<GradingCriteria>> handleGetGradings() async {
     return await gradingCriteriaRepositoryImpl.getGradingCriterias();
   }
+
+  Future<void> handleCreateGradings(List<GradingCriteria> gradingList) async {
+    return await gradingCriteriaRepositoryImpl.createGradings(gradingList);
+  }
 }

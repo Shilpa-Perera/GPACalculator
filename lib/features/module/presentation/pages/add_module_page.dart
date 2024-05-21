@@ -43,7 +43,7 @@ class _AddModulePageState extends State<AddModulePage> {
             color: Colors.white,
           ),
         ),
-        backgroundColor: Colors.blue[900],
+        backgroundColor: Color.fromARGB(255, 3, 6, 95),
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),

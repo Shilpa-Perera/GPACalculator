@@ -12,7 +12,6 @@ class MainSettingsPage extends StatefulWidget {
 }
 
 class _MainSettingsPageState extends State<MainSettingsPage> {
-  final List<GradingCriteria> gradings = [];
   final GradingCriteriaHandler handler = GradingCriteriaHandler();
 
   @override
@@ -27,13 +26,15 @@ class _MainSettingsPageState extends State<MainSettingsPage> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-            builder: (context) =>
-                const SettingsPage(key: Key('settings_page'))),
+          builder: (context) => const SettingsPage(key: Key('settings_page')),
+        ),
       );
     } else {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const SettingsNonEditable()),
+        MaterialPageRoute(
+          builder: (context) => SettingsNonEditable(gradings: gradings),
+        ),
       );
     }
   }
