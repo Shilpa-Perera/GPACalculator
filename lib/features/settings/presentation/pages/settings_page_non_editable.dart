@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:gpa_calculator/features/settings/domain/entities/grading_criteria.dart';
 
 class SettingsNonEditable extends StatefulWidget {
@@ -15,17 +14,6 @@ class _SettingsNonEditableState extends State<SettingsNonEditable> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Add Module',
-          style: GoogleFonts.dmSerifDisplay(
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-            color: Colors.white,
-          ),
-        ),
-        backgroundColor: const Color.fromARGB(255, 3, 6, 95),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(

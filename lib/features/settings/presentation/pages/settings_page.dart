@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:gpa_calculator/features/settings/domain/entities/grading_criteria.dart';
 import 'package:gpa_calculator/features/settings/domain/usecases/grading_criteria_handler.dart';
 import 'package:gpa_calculator/features/settings/presentation/widgets/letter_grade.dart';
+
+import 'settings_page_non_editable.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -77,17 +78,6 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Add Module',
-          style: GoogleFonts.dmSerifDisplay(
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-            color: Colors.white,
-          ),
-        ),
-        backgroundColor: const Color.fromARGB(255, 3, 6, 95),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -102,28 +92,31 @@ class _SettingsPageState extends State<SettingsPage> {
                       labelText: 'Set Maximum GPA',
                       border: OutlineInputBorder(),
                     ),
+                    enabled: !_settingsAdded, // Disable the GPA input field
                   ),
                 ),
-                IconButton(
-                  icon: const Icon(Icons.send),
-                  onPressed: _addInitialGrade,
-                ),
+                if (!_settingsAdded)
+                  IconButton(
+                    icon: const Icon(Icons.send),
+                    onPressed: _addInitialGrade,
+                  ),
               ],
             ),
             const SizedBox(height: 20),
-            Expanded(
-              child: ListView.builder(
-                itemCount: _letterGrades.length,
-                itemBuilder: (context, index) {
-                  return _letterGrades[index].buildRow(
-                      context,
-                      index,
-                      _removeGrade,
-                      _addNewGrade,
-                      index == _letterGrades.length - 1);
-                },
+            if (!_settingsAdded)
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _letterGrades.length,
+                  itemBuilder: (context, index) {
+                    return _letterGrades[index].buildRow(
+                        context,
+                        index,
+                        _removeGrade,
+                        _addNewGrade,
+                        index == _letterGrades.length - 1);
+                  },
+                ),
               ),
-            ),
             if (_isSendButtonVisible())
               ElevatedButton(
                 onPressed: () {
