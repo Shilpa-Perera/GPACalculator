@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:gpa_calculator/features/home/presentation/pages/home_page.dart';
-import 'package:gpa_calculator/features/home/presentation/widgets/predictor_page.dart';
 import 'package:gpa_calculator/features/semester/presentation/pages/view_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gpa_calculator/features/settings/presentation/pages/main_settings_page.dart';
@@ -53,11 +52,11 @@ class _NavigationExampleState extends State<NavigationExample> {
         indicatorColor: Color.fromARGB(255, 33, 80, 211),
         selectedIndex: currentPageIndex,
         destinations: const <Widget>[
-          NavigationDestination(
-            selectedIcon: Icon(Icons.insights),
-            icon: Icon(Icons.insights_outlined),
-            label: 'Predictor',
-          ),
+          // NavigationDestination(
+          //   selectedIcon: Icon(Icons.auto_graph_rounded),
+          //   icon: Icon(Icons.auto_graph_outlined),
+          //   label: 'Stats',
+          // ),
           NavigationDestination(
             selectedIcon: Icon(Icons.home_rounded),
             icon: Icon(Icons.home_outlined),
@@ -76,8 +75,8 @@ class _NavigationExampleState extends State<NavigationExample> {
         ],
       ),
       body: <Widget>[
-        /// Messages page
-        const PredictorPage(key: Key('predictor_page')),
+        // Stats page
+        // const StatsPage(key: Key('stats_page')),
 
         /// Home page
         const HomePage(
