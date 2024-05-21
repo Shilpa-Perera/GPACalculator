@@ -8,32 +8,37 @@ class CircleProgress extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    // Paint the circle
     Paint circle = Paint()
-      ..color = Colors.black
+      ..color = Color.fromARGB(255, 219, 227, 230)
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 10;
+      ..strokeWidth = 30;
 
-    // Taking the center of the canvas
     Offset center = Offset(size.width / 2, size.height / 2);
     double radius = size.width / 2 - 50;
     canvas.drawCircle(center, radius, circle);
 
-    // Draw animation
     Paint animationArc = Paint()
       ..shader = const LinearGradient(
-        colors: [Colors.red, Colors.green],
+        colors: [
+          Color.fromARGB(255, 21, 83, 134),
+          Color.fromARGB(255, 232, 74, 187)
+        ],
       ).createShader(Rect.fromCircle(center: center, radius: radius))
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 10;
+      ..strokeWidth = 30;
 
     double angle = 2 * pi * (currentProgress / 100);
-    canvas.drawArc(Rect.fromCircle(center: center, radius: radius), pi / 2,
-        angle, false, animationArc);
+    canvas.drawArc(
+      Rect.fromCircle(center: center, radius: radius),
+      -pi / 2,
+      angle,
+      false,
+      animationArc,
+    );
   }
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    throw UnimplementedError();
+    return true;
   }
 }
