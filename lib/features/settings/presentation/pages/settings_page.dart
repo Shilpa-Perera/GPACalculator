@@ -3,8 +3,6 @@ import 'package:gpa_calculator/features/settings/domain/entities/grading_criteri
 import 'package:gpa_calculator/features/settings/domain/usecases/grading_criteria_handler.dart';
 import 'package:gpa_calculator/features/settings/presentation/widgets/letter_grade.dart';
 
-import 'settings_page_non_editable.dart';
-
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
 
