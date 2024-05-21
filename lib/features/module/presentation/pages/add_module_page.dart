@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gpa_calculator/features/module/domain/entities/module.dart';
 import 'package:gpa_calculator/features/module/domain/usecases/module_handlers.dart';
+import 'package:gpa_calculator/features/settings/domain/entities/grading_criteria.dart';
+import 'package:gpa_calculator/features/settings/domain/usecases/grading_criteria_handler.dart';
 
 class AddModulePage extends StatefulWidget {
   final Map<dynamic, int> map;
@@ -14,21 +16,37 @@ class AddModulePage extends StatefulWidget {
 
 class _AddModulePageState extends State<AddModulePage> {
   late String _moduleName;
-  late String _selectedGrade;
+  String? _selectedGrade;
   late double _credit;
   late int _isGpa;
   int _semesterId = 0;
 
   final ModuleHandlers _moduleHandlers = ModuleHandlers();
+  final GradingCriteriaHandler gradingCriteriaHandler =
+      GradingCriteriaHandler();
+  final List<String> grades = [];
 
   @override
   void initState() {
     super.initState();
+    _loadGradings();
     _moduleName = '';
-    _selectedGrade = 'A+';
     _credit = 0.0;
     _isGpa = 1;
     _semesterId = widget.map['semesterId']!;
+  }
+
+  void _loadGradings() async {
+    List<GradingCriteria> gradings =
+        await gradingCriteriaHandler.handleGetGradings();
+    setState(() {
+      for (var grading in gradings) {
+        grades.add(grading.letterGrade);
+      }
+      if (grades.isNotEmpty) {
+        _selectedGrade = grades.first;
+      }
+    });
   }
 
   @override
@@ -43,43 +61,43 @@ class _AddModulePageState extends State<AddModulePage> {
             color: Colors.white,
           ),
         ),
-        backgroundColor: Color.fromARGB(255, 3, 6, 95),
+        backgroundColor: const Color.fromARGB(255, 3, 6, 95),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Text('Semester ID: $_semesterId'), // Displaying semesterId
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             TextField(
-              decoration: InputDecoration(labelText: 'Module Name'),
+              decoration: const InputDecoration(labelText: 'Module Name'),
               onChanged: (value) {
                 setState(() {
                   _moduleName = value;
                 });
               },
             ),
-            SizedBox(height: 16.0),
-            DropdownButtonFormField<String>(
-              value: _selectedGrade,
-              items: ['A+', 'A', 'A-', 'B+', 'B', 'B-', 'C+', 'C', 'C-', 'F']
-                  .map((String grade) {
-                return DropdownMenuItem<String>(
-                  value: grade,
-                  child: Text(grade),
-                );
-              }).toList(),
-              onChanged: (value) {
-                setState(() {
-                  _selectedGrade = value!;
-                });
-              },
-              decoration: InputDecoration(labelText: 'Grade'),
-            ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
+            if (grades.isNotEmpty)
+              DropdownButtonFormField<String>(
+                value: _selectedGrade,
+                items: grades.map((String grade) {
+                  return DropdownMenuItem<String>(
+                    value: grade,
+                    child: Text(grade),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    _selectedGrade = value!;
+                  });
+                },
+                decoration: const InputDecoration(labelText: 'Grade'),
+              ),
+            const SizedBox(height: 16.0),
             TextField(
-              decoration: InputDecoration(labelText: 'Credit'),
+              decoration: const InputDecoration(labelText: 'Credit'),
               keyboardType: TextInputType.number,
               onChanged: (value) {
                 setState(() {
@@ -87,10 +105,10 @@ class _AddModulePageState extends State<AddModulePage> {
                 });
               },
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             Row(
               children: <Widget>[
-                Text('GPA Module'),
+                const Text('GPA Module'),
                 Switch(
                   value: _isGpa == 1,
                   onChanged: (value) {
@@ -101,12 +119,12 @@ class _AddModulePageState extends State<AddModulePage> {
                 ),
               ],
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
                 _addModule();
               },
-              child: Text('Add Module'),
+              child: const Text('Add Module'),
             ),
           ],
         ),
@@ -115,11 +133,11 @@ class _AddModulePageState extends State<AddModulePage> {
   }
 
   void _addModule() {
-    if (_moduleName.isNotEmpty && _credit > 0) {
+    if (_moduleName.isNotEmpty && _credit > 0 && _selectedGrade != null) {
       final newModule = ModuleEntity(
         semesterId: _semesterId,
         moduleName: _moduleName,
-        grade: _selectedGrade,
+        grade: _selectedGrade!,
         credit: _credit.toInt(),
         isGpa: _isGpa,
       );
@@ -131,14 +149,14 @@ class _AddModulePageState extends State<AddModulePage> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Error'),
-            content: Text('Please fill in all fields.'),
+            title: const Text('Error'),
+            content: const Text('Please fill in all fields.'),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text('OK'),
+                child: const Text('OK'),
               ),
             ],
           );
