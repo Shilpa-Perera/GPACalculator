@@ -136,21 +136,22 @@ class _SemesterModulesPageState extends State<SemesterModulesPage> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text('Delete ${module.moduleName}?'),
-          content: Text('Are you sure you want to delete this module?'),
+          content: const Text('Are you sure you want to delete this module?'),
           actions: <Widget>[
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () async {
-                moduleHandlers.handleDeleteModule(module.id!);
+                moduleHandlers.handleDeleteModule(
+                    module.id!, module.semesterId);
                 _loadModules();
                 Navigator.of(context).pop();
               },
-              child: Text('Delete'),
+              child: const Text('Delete'),
             ),
           ],
         );

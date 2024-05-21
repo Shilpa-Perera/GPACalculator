@@ -8,9 +8,12 @@ class SemesterHandlers {
   static final semesterRepositoryImpl = SemesterRepositoryImpl();
   static final moduleHandler = ModuleHandlers();
 
-  void handleAddSemester(int semesterId) async {
-    await semesterRepositoryImpl.createSemester(
-        SemesterEntity(semesterId: semesterId, semesterGpa: 4.2));
+  Future handleAddSemester(int semesterId) async {
+    await semesterRepositoryImpl.createSemester(SemesterEntity(
+        semesterId: semesterId,
+        semesterGpa: 0.0,
+        totalGpaCredits: 0,
+        totalNonGpaCredits: 0));
   }
 
   Future<List<SemesterEntity>> handleGetSemesters() async {

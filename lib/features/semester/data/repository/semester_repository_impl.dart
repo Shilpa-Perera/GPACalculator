@@ -39,15 +39,14 @@ class SemesterRepositoryImpl implements SemesterRepository {
 
   @override
   Future<SemesterEntity> updateSemester(SemesterEntity semester) async {
-    // final Database db = await _databaseHandler.database;
-    // await db.update(
-    //   'semesters',
-    //   semester.toMap(),
-    //   where: 'id = ?',
-    //   whereArgs: [semester.id],
-    // );
-    // return semester;
-    throw UnimplementedError;
+    final Database db = await _databaseHandler.database;
+    await db.update(
+      'semesters',
+      semester.toJson(),
+      where: 'semesterId = ?',
+      whereArgs: [semester.semesterId],
+    );
+    return semester;
   }
 
   @override

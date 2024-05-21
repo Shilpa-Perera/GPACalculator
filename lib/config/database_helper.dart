@@ -15,7 +15,7 @@ class DatabaseHandler {
       join(await getDatabasesPath(), 'gpa.db'),
       onCreate: (db, version) async {
         await db.execute(
-          "CREATE TABLE semesters(semesterId INTEGER PRIMARY KEY , semesterGpa REAL)",
+          "CREATE TABLE semesters(semesterId INTEGER PRIMARY KEY , semesterGpa REAL , totalGpaCredits INTEGER , totalNonGpaCredits INTEGER )",
         );
         await db.execute(
           "CREATE TABLE modules(moduleId INTEGER PRIMARY KEY AUTOINCREMENT , semesterId INTEGER, moduleName TEXT, isGpa INTEGER, credit INTEGER, grade TEXT, FOREIGN KEY(semesterId) REFERENCES semester(semesterId))",

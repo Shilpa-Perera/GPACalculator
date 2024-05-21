@@ -144,7 +144,6 @@ class _AddModulePageState extends State<AddModulePage> {
       _moduleHandlers.handleAddModule(newModule);
       Navigator.pop(context, true);
     } else {
-      // Show error message or handle validation
       showDialog(
         context: context,
         builder: (BuildContext context) {
