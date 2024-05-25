@@ -14,7 +14,7 @@ The GPA Calculator App is a customizable and user-friendly application developed
 
 ## Installation
 
-1. Download the latest release version of the app [here](#) (link to the APK).
+1. Download the latest release version of the app [https://github.com/Shilpa-Perera/gpa_calculator/releases/tag/pre-relese](#) (link to the APK).
 2. Transfer the APK file to your Android device.
 3. Open the APK file and follow the on-screen instructions to install the app.
 
@@ -44,9 +44,7 @@ The GPA Calculator App is a customizable and user-friendly application developed
 
 ## Screenshots
 
-![Home Screen](screenshots/home.png)
-![Semesters Screen](screenshots/semesters.png)
-![Settings Screen](screenshots/settings.png)
+![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXh0NmM4N2NnOHhlamVoZnd3a2pzMmN5NXI0enA4ZDl1eW5meWE1eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/W4ym9VCLNCacCdiDLJ/giphy.gif)
 
 ## Development
 
