@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXh0NmM4N2NnOHhlamVoZnd3a2pzMmN5NXI0enA4ZDl1eW5meWE1eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/W4ym9VCLNCacCdiDLJ/giphy.gif">
-</p>
 
 # GPA Calculator App
 
@@ -15,6 +12,11 @@ The GPA Calculator App is a customizable and user-friendly application developed
 - **Home Screen**: Displays the total GPA credits, total non-GPA credits, and the calculated GPA.
 - **Semesters Management**: Users can add or delete semesters and manage modules within each semester.
 - **Settings**: Displays the grading system in a read-only format.
+
+## Demo
+<p align="center">
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXh0NmM4N2NnOHhlamVoZnd3a2pzMmN5NXI0enA4ZDl1eW5meWE1eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/W4ym9VCLNCacCdiDLJ/giphy.gif">
+</p>
 
 ## Installation
 
