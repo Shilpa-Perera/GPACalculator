@@ -4,7 +4,8 @@ import 'package:gpa_calculator/features/settings/domain/usecases/grading_criteri
 import 'package:gpa_calculator/features/settings/presentation/widgets/letter_grade.dart';
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key});
+  const SettingsPage({super.key, required this.onPageChange});
+  final Function onPageChange;
 
   @override
   _SettingsPageState createState() => _SettingsPageState();
@@ -65,6 +66,7 @@ class _SettingsPageState extends State<SettingsPage> {
     setState(() {
       _settingsAdded = true;
     });
+    widget.onPageChange(0);
   }
 
   bool _isSendButtonVisible() {

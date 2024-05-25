@@ -37,14 +37,14 @@ class _SemesterModulesPageState extends State<SemesterModulesPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Semester Modules',
+          'Add Module',
           style: GoogleFonts.dmSerifDisplay(
             fontSize: 20,
             fontWeight: FontWeight.w500,
             color: Colors.white,
           ),
         ),
-        backgroundColor: Colors.blue[900],
+        backgroundColor: const Color.fromARGB(255, 3, 6, 95),
       ),
       body: ListView.builder(
         itemCount: modules.length + 1,

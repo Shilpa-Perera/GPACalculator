@@ -4,7 +4,10 @@ import 'package:gpa_calculator/features/settings/domain/entities/grading_criteri
 class SettingsNonEditable extends StatefulWidget {
   final List<GradingCriteria> gradings;
 
-  const SettingsNonEditable({super.key, required this.gradings});
+  final Function onPageChange;
+
+  const SettingsNonEditable(
+      {super.key, required this.gradings, required this.onPageChange});
 
   @override
   State<SettingsNonEditable> createState() => _SettingsNonEditableState();
