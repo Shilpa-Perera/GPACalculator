@@ -22,7 +22,7 @@ The GPA Calculator App is a customizable and user-friendly application developed
 
 ### Initial Setup
 
-1. **Add Grading Point System**: On first launch, users will be prompted to set up their grading point system. This step is mandatory and ensures the app calculates GPA accurately.
+- **Add Grading Point System**: On first launch, users will be prompted to set up their grading point system. This step is mandatory and ensures the app calculates GPA accurately.
    - Input the grading points corresponding to each grade.
    - Once saved, the grading system cannot be edited but can be viewed in the settings.
 
