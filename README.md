@@ -1,16 +1,83 @@
-# gpa_calculator
+# GPA Calculator App
 
-A new Flutter project.
+## Overview
 
-## Getting Started
+The GPA Calculator App is a customizable and user-friendly application developed using Flutter. It allows users to define their own grading point system, manage semesters, add modules, and calculate their GPA.
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- **Customizable Grading Point System**: Users can set up their grading point system according to their preferences or institutional requirements.
+- **View Only Grading System**: Once set, the grading point system is view-only to prevent accidental changes.
+- **Home Screen**: Displays the total GPA credits, total non-GPA credits, and the calculated GPA.
+- **Semesters Management**: Users can add or delete semesters and manage modules within each semester.
+- **Settings**: Displays the grading system in a read-only format.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Installation
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Download the latest release version of the app [here](#) (link to the APK).
+2. Transfer the APK file to your Android device.
+3. Open the APK file and follow the on-screen instructions to install the app.
+
+## Usage
+
+### Initial Setup
+
+1. **Add Grading Point System**: On first launch, users will be prompted to set up their grading point system. This step is mandatory and ensures the app calculates GPA accurately.
+   - Input the grading points corresponding to each grade.
+   - Once saved, the grading system cannot be edited but can be viewed in the settings.
+
+### Navigation
+
+#### Home
+
+- **GPA Overview**: Displays the total GPA credits, total non-GPA credits, and the cumulative GPA.
+
+#### Semesters
+
+- **View Semesters**: List all the semesters added by the user.
+- **Add Semester**: Use the add function to create a new semester.
+- **Manage Modules**: Click on a semester to view and add modules. Existing modules can also be deleted from this screen.
+
+#### Settings
+
+- **View Grading System**: Displays the grading point system in a read-only format to ensure transparency and prevent modifications.
+
+## Screenshots
+
+![Home Screen](screenshots/home.png)
+![Semesters Screen](screenshots/semesters.png)
+![Settings Screen](screenshots/settings.png)
+
+## Development
+
+### Requirements
+
+- Flutter SDK
+- Dart
+
+### Setup
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/yourusername/gpa_calculator_app.git
+2. Navigate to the project directory
+   ```sh
+   cd gpa_calculator_app
+3. Install dependencies
+   ```sh
+   flutter pub get
+4. Run the app
+   ```sh
+   flutter run
+
+## Contributing
+
+Contributions are welcome! Please follow these steps to contribute:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/your-feature-name`).
+3. Commit your changes (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature/your-feature-name`).
+5. Open a Pull Request.
+
+
