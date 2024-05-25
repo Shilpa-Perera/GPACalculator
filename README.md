@@ -42,7 +42,7 @@ The GPA Calculator App is a customizable and user-friendly application developed
 
 - **View Grading System**: Displays the grading point system in a read-only format to ensure transparency and prevent modifications.
 
-## Screenshots
+## Demo
 
 ![](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXh0NmM4N2NnOHhlamVoZnd3a2pzMmN5NXI0enA4ZDl1eW5meWE1eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/W4ym9VCLNCacCdiDLJ/giphy.gif)
 
